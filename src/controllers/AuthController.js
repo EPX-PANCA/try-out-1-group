@@ -41,7 +41,7 @@ try {
       const token = jsonwebtoken.sign(user.username, opts.secretOrKey);
     
       res.json({
-        status: "Success",
+        status: "success",
         token
       })
       
@@ -66,7 +66,8 @@ static async register(req, res){
           password:body.password,
           role:body.role
       });
-      response.message = "sukses simpan data";
+      response.status = 'success';
+      response.message = "success register";
       response.data = save;
       res.status(201).json(response);
     } catch (error) {
