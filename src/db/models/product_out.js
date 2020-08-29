@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   product_out.init({
     date: DataTypes.DATE,
     total: DataTypes.INTEGER,
-    id_product: DataTypes.INTEGER
+    idProduct: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'product_out',

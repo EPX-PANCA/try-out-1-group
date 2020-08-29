@@ -17,7 +17,7 @@ class ProductController{
 
             await Product.findAndCountAll({
                 include: [
-                    { model: Users }
+                    { model: User }
                 ],
                 limit:limit,
                 offset:offset
@@ -42,7 +42,7 @@ class ProductController{
         try {
             const products = await Product.findByPk(req.params.id, {
                 include: [
-                    { model: user }
+                   
                 ]
             });
             if (!products) throw new Error("User not found")
