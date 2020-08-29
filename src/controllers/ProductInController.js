@@ -1,9 +1,10 @@
 const { Product, product_in, User} = require("../db/models");
 
 const response = {
-    data:[],
+    
     message: "Succes get user data",
-    status: "success"
+    status: "success",
+    data:[]
 };
 
 const attUser = ['full_name','username', 'email', 'phone_number'];
@@ -62,7 +63,7 @@ class ProductInController{
             if (productdetail) {
                 response.status = true;
                 response.data = productdetail;
-                response.message = "not found!";
+                response.message = "data ditemukan!";
                 res.status(200).json(response);
             } else {
                 response.data = '';

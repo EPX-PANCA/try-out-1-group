@@ -86,7 +86,7 @@ class ProductOutController{
             if (productdetail) {
                 response.status = true;
                 response.data = productdetail;
-                response.message = "not found!";
+                response.message = "data ditemukan!";
                 res.status(200).json(response);
             } else {
                 response.data = '';
