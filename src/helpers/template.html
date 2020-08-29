@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Report</title>
+
+</head>
+<body>
+
+<h1>Product List</h1>
+<ul>
+    {{#each list}}
+      <li>Id: {{this.id}}</li>
+      <li>Name: {{this.name}}</li>
+      <li>Stock: {{this.stock}}</li>
+      <li>Price: {{this.price}}</li>
+      <li>Create At: {{this.createdAt}}</li>
+      <li>Update At: {{this.updatedAt}}</li>
+      <br>
+    {{/each}}
+  </ul>
+  
+
+</body>
+</html>

@@ -10,6 +10,7 @@ const routerUser = require("./src/routes/UserRouter");
 const routerProduct = require("./src/routes/ProductRouter");
 const routerProductIn = require("./src/routes/ProductInRouter");
 const routerProductOut = require("./src/routes/ProductOutRouter");
+const routerReport = require("./src/routes/ReportController");
 //test
 
 app.use(
@@ -25,6 +26,7 @@ app.use("/api/v1/auth", routerAuth);
 app.use("/api/v1/product", routerProduct);
 app.use("/api/v1/in", routerProductIn);
 app.use("/api/v1/out", routerProductOut);
+app.use("/api/v1/report", routerReport);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
