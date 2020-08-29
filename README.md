@@ -25,3 +25,7 @@
 
 ## Agung (task) 
 
+### Inisialisasi controller
+### Implementasi CRUD
+### Struktur json respon/request
+
