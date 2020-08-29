@@ -4,16 +4,17 @@ const multer = require('multer')
 const path = require('path');
 const datauri = require('datauri/parser');
 
-const myDatauri = new datauri();
-const dataUri = req => myDatauri.format(path.extname(req.file.originalname), req.file.buffer);
+const mydatauri = new datauri();
+const dataUri = req => mydatauri.format(path.extname(req.file.originalname), req.file.buffer);
 
 const storage = multer.memoryStorage();
 const multerUploads = multer({ storage }).single('image');
 
+
 cloudinary.config({
-    cloud_name: dg6l4c6kf,
-    api_key: 899967328296132,
-    api_secret: kMPj3P_rfMn4dAJW4Xb5f0qg0X0
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
 });
 
 const uploadCloudinary = async(req, res) => {

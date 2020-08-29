@@ -1,4 +1,4 @@
-const { User, Product, product_out} = require("../models");
+const { User, Product, product_out} = require("../db/models");
 
 const response = {
     status: true,

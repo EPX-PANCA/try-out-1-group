@@ -23,7 +23,7 @@ class ProductController{
                 offset:offset
             }).then(data =>{
                 const product = {
-                    data = data.rows,
+                    data : data.rows,
                     totalItems: data.count,
                     totalPages: Math.ceil(data.count / limit),
                     currentPages: page+1

@@ -1,9 +1,9 @@
-const { Product, product_in, User} = require("../models");
+const { Product, product_in, User} = require("../db/models");
 
 const response = {
-    status: true,
-    message: "Data OK",
-    data: [],
+    data:[],
+    message: "Succes get user data",
+    status: "success"
 };
 
 const attUser = ['full_name','username', 'email', 'phone_number'];
@@ -35,7 +35,7 @@ class ProductInController{
                 response.message = "Data tidak ditemukan!";
                 res.status(400).json(response);
             }
-        } catch (err) {
+        }catch (err) {
             response.data = '';
             response.status = false;
             response.message = err.message;
