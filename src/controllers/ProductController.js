@@ -39,10 +39,11 @@ class ProductController{
     }
 
     static async getProductId(req,res){
+        const { id } = req.params;
         try {
-            const products = await Product.findByPk(req.params.id, {
+            const products = await Product.findByPk(id, {
                 include: [
-                   
+                    { model: User }
                 ]
             });
             if (!products) throw new Error("User not found")
