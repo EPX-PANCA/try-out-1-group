@@ -9,33 +9,22 @@ const response = {
 
 class ProductController{
     static async getProductAll(req,res){
-        try{
-            const page = parseInt(req.query.page);
-            const limit = parseInt(req.query.limit);
-
-            const offset = page ? page * limit : 0;
-
-            await Product.findAndCountAll({
-                include: [
-                    { model: User }
-                ],
-                limit:limit,
-                offset:offset
-            }).then(data =>{
-                const product = {
-                    data : data.rows,
-                    totalItems: data.count,
-                    totalPages: Math.ceil(data.count / limit),
-                    currentPages: page+1
-                }
-                res.json(response);
-            }).catch(error => res.json(error))
-        }catch (error) {
+        try {
+            const products = await Product.findAll({
+                include:[
+                    {model : User}
+                ]
+            });
+            response.data = products;
+            response.status = "OK";
+            response.message = "Success get product data";
+            res.status(200).json(response);
+        } catch (error) {
+            response.data = undefined
+            response.status = "ERROR";
             response.message = error.message;
-            response.data = [];
-            response.status = "fail";
-            res.status(404).json(response);
-          }
+            res.status(400).json(response);
+        }
     }
 
     static async getProductId(req,res){
