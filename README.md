@@ -7,9 +7,9 @@
 - [x] Middleware auth 
 - [x] Struktur json respon/request 
 - [ ] Paginasi
-- [x] Implementasi nodemailer (tapi belum sesuai dengan soal)
+- [ ] Implementasi nodemailer (sudah bisa kirim email, tapi belum sesuai dengan soal)
 - [x] Implementasi cloudinary
-- [ ] Print out
+- [ ] Print out (sudah bisa generate pdf, tapi masih salah datanya reportnya)
 
 
 * http://localhost:3000/api/v1/user
@@ -23,18 +23,18 @@
 
 ## Panca (task)
 
-### Strukturisasi folder
-### Inisialisasi database dan migration
-### Inisialisasi controller
-### Implementasi CRUD
-### Middleware auth
-### Struktur json respon/request
+* Strukturisasi folder
+* Inisialisasi database dan migration
+* Inisialisasi controller
+* Implementasi CRUD
+* Middleware auth
+* Struktur json respon/request
 
 --------------------------------------
 
 ## Agung (task) 
 
-### Inisialisasi controller
-### Implementasi CRUD
-### Struktur json respon/request
+* Inisialisasi controller
+* Implementasi CRUD
+* Struktur json respon/request
 
