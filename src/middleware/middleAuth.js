@@ -1,35 +1,27 @@
-const {User} = require("../db/models")
-require('dotenv').config();
-const passport = require("passport");
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const opts = {
-    jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey : process.env.JWT_SECRET
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
-}
-
-module.exports = passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    User.findOne({
-        where: {
-            username: jwt_payload
+const response = {
+    status: "",
+    message: "",
+  };
+module.exports = async (req, res, next) => {
+    if (!req.headers['authorization']) {
+        response.status = "failed";
+        response.message = "unauthenticated";
+        return res.status(401).json(response)
+    }
+    const token = req.headers['authorization'].split(' ')[1]
+    try {
+        const verify = jwt.verify(token, process.env.JWT_SECRET)
+        if (verify) {
+            req.token = token
+            req.username = jwt.decode(token, process.env.JWT_SECRET)
+            return next()
         }
-    })
-    .then((data) => {
-        const user = data;
-        return done(null, user)
-    })
-    .catch((err) => { return done(err, false) })
-}));
-
-module.exports = passport.serializeUser(function(user, cb) {
-    cb(null, user.id);
-});
-  
-module.exports = passport.deserializeUser(function(id, cb) {
-    User.findByPk(id, function (err, user) {
-        if (err) { return cb(err); }
-        cb(null, user);
-    });
-});
-module.exports = passport.authenticate("jwt", {session: false})
+    } catch (error) {
+        response.status = "failed";
+        response.message = "invalid token";
+        return res.status(500).json(response)
+    }
+}
