@@ -7,9 +7,18 @@
 - [x] Middleware auth 
 - [x] Struktur json respon/request 
 - [ ] Paginasi
-- [ ] Implementasi nodemailer
+- [x] Implementasi nodemailer (tapi belum sesuai dengan soal)
 - [x] Implementasi cloudinary
 - [ ] Print out
+
+
+* http://localhost:3000/api/v1/user
+* http://localhost:3000/api/v1/product
+* http://localhost:3000/api/v1/auth/login
+* http://localhost:3000/api/v1/auth/register
+* http://localhost:3000/api/v1/in
+* http://localhost:3000/api/v1/out
+* http://localhost:3000/api/v1/report/id (masih belum bener reportingnya)
 
 
 ## Panca (task)
