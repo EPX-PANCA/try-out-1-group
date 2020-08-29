@@ -46,10 +46,10 @@ class ProductController{
                     { model: User }
                 ]
             });
-            if (!products) throw new Error("User not found")
+            if (!products) throw new Error("product not found")
             response.data = products;
             response.status = "success";
-            response.message = `success get user data id : ${id}`;
+            response.message = `success get product data id : ${id}`;
             res.json(response);
         } catch (error) {
             response.message = error.message;
@@ -65,7 +65,7 @@ class ProductController{
             const dataCreate = {...req.body, ...dataImage };
             await Product.create(dataCreate);
             response.data = dataCreate;
-            response.message = "success save user data";
+            response.message = "success save product data";
             response.status = "OK";
             res.status(201).json(response);
         } catch (error) {
@@ -102,7 +102,7 @@ class ProductController{
                 throw Error('id not found')
             await Product.destroy({ where: { id: req.body.id } });
             response.data = req.body.id;
-            response.message = `success deleted user data id : ${id}`;
+            response.message = `success deleted product data id : ${id}`;
             response.data = [];
             res.status(200).json(response);
         } catch (error) {
