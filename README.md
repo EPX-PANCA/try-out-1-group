@@ -14,12 +14,12 @@
 
 ## Panca (task)
 
-Strukturisasi folder
-Inisialisasi database dan migration
-Inisialisasi controller
-Implementasi CRUD
-Middleware auth
-Struktur json respon/request
+### Strukturisasi folder
+### Inisialisasi database dan migration
+### Inisialisasi controller
+### Implementasi CRUD
+### Middleware auth
+### Struktur json respon/request
 
 --------------------------------------
 
