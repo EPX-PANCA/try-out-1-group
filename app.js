@@ -7,9 +7,9 @@ const port = 3000;
 const routerIndex = require("./src/routes/IndexRouter");
 const routerAuth = require("./src/routes/AuthRouter");
 const routerUser = require("./src/routes/UserRouter");
-const routerProduct = require("./routes/ProductRouter");
-const routerProductIn = require("./routes/ProductInRouter");
-const routerProductOut = require("./routes/ProductOutRouter");
+const routerProduct = require("./src/routes/ProductRouter");
+const routerProductIn = require("./src/routes/ProductInRouter");
+const routerProductOut = require("./src/routes/ProductOutRouter");
 //test
 
 app.use(
