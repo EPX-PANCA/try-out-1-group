@@ -6,7 +6,7 @@
 - [x] Implementasi CRUD 
 - [x] Middleware auth 
 - [x] Struktur json respon/request 
-- [ ] Paginasi
+- [x] Paginasi
 - [ ] Implementasi nodemailer (sudah bisa kirim email, tapi belum sesuai dengan soal)
 - [x] Implementasi cloudinary
 - [ ] Print out (sudah bisa generate pdf, tapi masih salah datanya reportnya)
@@ -37,4 +37,6 @@
 * Inisialisasi controller
 * Implementasi CRUD
 * Struktur json respon/request
+* Implementasi Cloudinary
+* Pagination REST API
 
