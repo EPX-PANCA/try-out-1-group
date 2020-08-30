@@ -6,6 +6,19 @@ const response = {
     data: [],
 };
 
+
+const getPagination = (data) => {
+    const limit = data.limit ? parseInt(data.limit) : 10
+    const offset = data.page <= 1 ? 0 : data.page * limit - limit
+
+    const totalItems = data.count
+    const totalPages = data.count == 0 ? 0 : Math.ceil(totalItems / limit)
+    const currentPage = offset >= 1 ? data.page : 1
+    return {
+        limit, offset, totalItems, totalPages, currentPage
+    }
+}
+
 const attUser = ['full_name','username', 'email', 'phone_number'];
 const attProduct = ['name', 'stock', 'price'];
 const attIn = ['date', 'total'];
@@ -13,7 +26,18 @@ const attIn = ['date', 'total'];
 class ProductOutController{
     static async getProductOutAll(req, res){
         try {
-            const inProduct = await product_out.findAll({
+            const count = await product_out.count()
+            const dt = getPagination({
+                limit: req.query.limit,
+                page: parseInt(req.query.page),
+                count: count
+              })
+              
+            const page = parseInt(req.query.page);
+            const limit = parseInt(req.query.limit);
+            const offset = page ? page*limit : 0;
+
+            const outProduct = await product_out.findAll({
                 attributes: attIn,
                 include: [{
                     model: Product,
@@ -22,11 +46,18 @@ class ProductOutController{
                         model: User,
                         attributes: attUser
                     }] 
-                }]
+                }],
+                limit: limit,
+                offset: offset
             });
-            if (inProduct.length !== 0) {
+            if (outProduct.length !== 0) {
                 response.status = true;
-                response.data = inProduct;
+                response.data = {
+                    outProduct,
+                    totalItems: dt.totalItems,
+                    totalPages: dt.totalPages,
+                    currentPage: dt.currentPage
+                  }
                 response.message = "Data ditemukan!";
                 res.status(200).json(response);
             } else {

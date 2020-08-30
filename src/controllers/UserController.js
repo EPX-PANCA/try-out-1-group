@@ -7,6 +7,18 @@ const response = {
     data: [],
   };
 
+  const getPagination = (data) => {
+    const limit = data.limit ? parseInt(data.limit) : 10
+    const offset = data.page <= 1 ? 0 : data.page * limit - limit
+
+    const totalItems = data.count
+    const totalPages = data.count == 0 ? 0 : Math.ceil(totalItems / limit)
+    const currentPage = offset >= 1 ? data.page : 1
+    return {
+        limit, offset, totalItems, totalPages, currentPage
+    }
+}
+
   class UserController {
 
     static async saveUser(req, res) {
@@ -79,6 +91,13 @@ const response = {
       }
     
       static async getUserAll(req, res) {
+        const count = await User.count()
+        const dt = getPagination({
+            limit: req.query.limit,
+            page: parseInt(req.query.page),
+            count: count
+          })
+          
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
         const offset = page ? page*limit : 0;
@@ -89,7 +108,12 @@ const response = {
             offset: offset
           });
           if (!userdetail) throw new Error("User not found")
-          response.data = userdetail;
+          response.data = {
+            userdetail,
+            totalItems: dt.totalItems,
+            totalPages: dt.totalPages,
+            currentPage: dt.currentPage
+          }
           response.status ="success";
           response.message = "success get user data";
           res.json(response);

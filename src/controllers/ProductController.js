@@ -7,9 +7,30 @@ const response = {
     data: [],
 };
 
+const getPagination = (data) => {
+    const limit = data.limit ? parseInt(data.limit) : 10
+    const offset = data.page <= 1 ? 0 : data.page * limit - limit
+
+    const totalItems = data.count
+    const totalPages = data.count == 0 ? 0 : Math.ceil(totalItems / limit)
+    const currentPage = offset >= 1 ? data.page : 1
+    return {
+        limit, offset, totalItems, totalPages, currentPage
+    }
+}
+
 class ProductController{
     static async getProductAll(req,res){
+      
+
         try {
+            const count = await Product.count()
+            const dt = getPagination({
+                limit: req.query.limit,
+                page: parseInt(req.query.page),
+                count: count
+              })
+
             const page = parseInt(req.query.page);
             const limit = parseInt(req.query.limit);
             const offset = page ? page*limit : 0;
@@ -21,7 +42,12 @@ class ProductController{
                 limit: limit,
                 offset: offset
             });
-            response.data = products;
+            response.data = {
+                products,
+                totalItems: dt.totalItems,
+                totalPages: dt.totalPages,
+                currentPage: dt.currentPage
+              }
             response.status = "OK";
             response.message = "Success get product data";
             res.status(200).json(response);
