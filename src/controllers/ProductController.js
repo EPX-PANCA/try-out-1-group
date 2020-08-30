@@ -10,10 +10,16 @@ const response = {
 class ProductController{
     static async getProductAll(req,res){
         try {
+            const page = parseInt(req.query.page);
+            const limit = parseInt(req.query.limit);
+            const offset = page ? page*limit : 0;
+
             const products = await Product.findAll({
                 include:[
                     {model : User}
-                ]
+                ],
+                limit: limit,
+                offset: offset
             });
             response.data = products;
             response.status = "OK";
