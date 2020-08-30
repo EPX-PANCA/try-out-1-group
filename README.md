@@ -18,7 +18,7 @@
 * http://localhost:3000/api/v1/auth/register
 * http://localhost:3000/api/v1/in
 * http://localhost:3000/api/v1/out
-* http://localhost:3000/api/v1/report/id (masih belum bener reportingnya)
+* http://localhost:3000/api/v1/report/id (masih belum bener reportingnya(masih tahap percobaan))
 
 
 ## Panca (task)
@@ -29,6 +29,7 @@
 * Implementasi CRUD
 * Middleware auth
 * Struktur json respon/request
+* Nodemailer (sudah bisa generate pdf dan kirim email, tapi belum sesuai)
 
 --------------------------------------
 

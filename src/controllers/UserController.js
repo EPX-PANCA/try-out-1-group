@@ -62,8 +62,9 @@ const response = {
     
       static async getUserId(req, res) {
         const { id } = req.params;
-        const userdetail = await User.findByPk(id);
+        
         try {
+          const userdetail = await User.findByPk(id);
           if (!userdetail) throw new Error("User not found")
           response.data = userdetail;
           response.status = "success";
@@ -78,8 +79,15 @@ const response = {
       }
     
       static async getUserAll(req, res) {
-        const userdetail = await User.findAll({});
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        const offset = page ? page*limit : 0;
+        
         try {
+          const userdetail = await User.findAll({
+            limit: limit,
+            offset: offset
+          });
           if (!userdetail) throw new Error("User not found")
           response.data = userdetail;
           response.status ="success";
