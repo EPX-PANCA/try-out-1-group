@@ -98,7 +98,7 @@ const response = {
             count: count
           })
           
-        const page = parseInt(req.query.page);
+        const page = parseInt(req.query.page) - 1;
         const limit = parseInt(req.query.limit);
         const offset = page ? page*limit : 0;
         
