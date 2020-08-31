@@ -10,7 +10,7 @@ const routerUser = require("./src/routes/UserRouter");
 const routerProduct = require("./src/routes/ProductRouter");
 const routerProductIn = require("./src/routes/ProductInRouter");
 const routerProductOut = require("./src/routes/ProductOutRouter");
-const routerReport = require("./src/routes/ReportController");
+const routerReport = require("./src/routes/ReportRouter");
 //test
 
 app.use(
