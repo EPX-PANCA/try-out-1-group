@@ -2,10 +2,10 @@ require('dotenv').config()
 const cloudinary = require('cloudinary').v2
 const multer = require('multer')
 const path = require('path');
-const datauri = require('datauri/parser');
+const Datauri = require('datauri/parser');
 
-const mydatauri = new datauri();
-const dataUri = req => mydatauri.format(path.extname(req.file.originalname), req.file.buffer);
+const dUri = new Datauri();
+const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
 
 const storage = multer.memoryStorage();
 const multerUploads = multer({ storage }).single('image');
